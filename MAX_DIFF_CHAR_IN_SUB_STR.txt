@@ -1,0 +1,23 @@
+def total_diff_chars(input_string,n):
+    count_chars = [0]*256
+    for i in range(n):
+        x=ord(input_string[i])
+        count_chars[x] = count_chars[x] + 1
+    max_diff = 0
+    for i in range(0,256):
+        if (count_chars[i]!=0):
+            max_diff = max_diff + 1
+    return max_diff
+
+input_string = input()
+n = len(input_string)
+diff_char_len = total_diff_chars(input_string,n);
+y = n
+for i in range(0,n):
+    for j in range(0,n):
+        sub_str = input_string[i:j]
+        sub_str_len = len(sub_str)
+        diff_char_sub_str =  total_diff_chars(sub_str,sub_str_len)
+        if(sub_str_len  < y and diff_char_len == diff_char_sub_str):
+            y = sub_str_len
+print(y)
